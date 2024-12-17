@@ -1,4 +1,4 @@
-
+"use client"
 import SectionHowItWork from "@/components/SectionHowItWork/SectionHowItWork";
 import BackgroundSection from "@/components/BackgroundSection/BackgroundSection";
 import SectionPromo1 from "@/components/SectionPromo1";
@@ -17,15 +17,19 @@ import { PRODUCTS, SPORT_PRODUCTS } from "@/data/data";
 import SectionGridFeatureItems from "@/components/SectionGridFeatureItems";
 import SectionMagazine5 from "@/app/blog/SectionMagazine5";
 import  './globals.css'
+import Preloader from '../components/Preloader/Preloader'
+
+
 function PageHome() {
 
 
-
+;
 
 
 
   return (
     <div className="nc-PageHome relative overflow-hidden">
+       <Preloader />
       <SectionHero2 />
 
       <div className="mt-24 lg:mt-32">
@@ -46,7 +50,7 @@ function PageHome() {
         <div className="py-24 lg:py-32 border-t border-b border-slate-200 dark:border-slate-700">
           <SectionHowItWork />
         </div>
-        <SectionPromo1 />
+        {/* <SectionPromo1 /> */}
 
         <div className="relative py-24 lg:py-32">
           <BackgroundSection />

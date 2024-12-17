@@ -82,7 +82,7 @@ const MainNav2Logged: FC<MainNav2LoggedProps> = () => {
       
         
           <div className="lg:flex-1 flex items-center text-2xl font-bold flex-shrink-0">
-       <Link href='/' > Only De</Link>
+       <Link href='/' > AhmadEco</Link>
         </div>
      
 

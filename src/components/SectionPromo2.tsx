@@ -1,10 +1,8 @@
+"use client"
+
 import React, { FC } from "react";
-import NcImage from "@/shared/NcImage/NcImage";
-import rightImgDemo from "@/images/promo2.png";
+import rightImgDemo from "@/images/banner-2.webp";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
-import Logo from "@/shared/Logo/Logo";
-import backgroundLineSvg from "@/images/Moon.svg";
-import Image from "next/image";
 import Link from "next/link";
 
 export interface SectionPromo2Props {
@@ -13,20 +11,21 @@ export interface SectionPromo2Props {
 
 const SectionPromo2: FC<SectionPromo2Props> = ({ className = "lg:pt-10" }) => {
   return (
-    <div className={`nc-SectionPromo2 ${className}`}>
-      <div className="relative flex flex-col lg:flex-row lg:justify-end bg-yellow-50 dark:bg-slate-800 rounded-2xl sm:rounded-[40px] p-4 pb-0 sm:p-5 sm:pb-0 lg:p-24">
-        <div className="absolute inset-0">
-          <Image
-            fill
-            className="absolute w-full h-full object-contain dark:opacity-5"
-            src={backgroundLineSvg}
-            alt="backgroundLineSvg"
-          />
-        </div>
-
-        <div className="lg:w-[45%] max-w-lg relative">
-          <Link  href='/' className="font-bold text-2xl">Only De</Link>
-          <h2 className="font-semibold text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl mt-6 sm:mt-10 !leading-[1.13] tracking-tight">
+    <div className={`nc-SectionPromo2  ${className}`}>
+      <div
+        className="relative flex flex-col lg:flex-row lg:justify-end rounded-2xl sm:rounded-[40px] p-4 pb-0 sm:p-5 sm:pb-0 lg:p-24
+                   bg-yellow-50 dark:bg-slate-800 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${rightImgDemo.src})`,
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Content */}
+        <div className="lg:w-[45%] max-w-lg relative z-10">
+          <Link href="/" className="font-bold text-2xl hover:text-gray-600">
+            AhmadEco
+          </Link>
+          <h2 className="font-semibold dark:text-black  text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl mt-6 sm:mt-10 !leading-[1.13] tracking-tight">
             Special offer <br />
             in kids products
           </h2>
@@ -44,13 +43,8 @@ const SectionPromo2: FC<SectionPromo2Props> = ({ className = "lg:pt-10" }) => {
           </div>
         </div>
 
-        <NcImage
-          alt=""
-          containerClassName="relative block lg:absolute lg:left-0 lg:bottom-0 mt-10 lg:mt-0 max-w-xl lg:max-w-[calc(55%-40px)]"
-          src={rightImgDemo}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className=""
-        />
+        {/* Optional: Gradient Overlay */}
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-yellow-50 to-transparent dark:from-slate-800 opacity-90"></div> */}
       </div>
     </div>
   );

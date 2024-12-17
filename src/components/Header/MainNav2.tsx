@@ -17,9 +17,32 @@ export interface MainNav2Props {
 }
 
 const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
-  const [showSearchForm, setShowSearchForm] = useState(false);
+  
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSearchForm, setShowSearchForm] = useState(true);
   const router = useRouter();
 
+  // Handle input change and fetch suggestions
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchQuery = e.target.value;
+    setQuery(searchQuery);
+
+    if (searchQuery.length > 2) {
+      // Simulate fetching suggestions from an API
+      // Replace this with your actual API call
+      const fetchedSuggestions = [
+        "Example Keyword 1",
+        "Example Keyword 2",
+        "Example Keyword 3",
+      ].filter((item) =>
+        item.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSuggestions(fetchedSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
   const renderMagnifyingGlassIcon = () => {
     return (
       <svg
@@ -50,26 +73,54 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
   const renderSearchForm = () => {
     return (
       <form
-        className="flex-1 py-2 text-slate-900 dark:text-slate-100"
-        onSubmit={(e) => {
-          e.preventDefault();
-          router.push("/search");
-        }}
-      >
-        <div className="bg-slate-50 dark:bg-slate-800 flex items-center space-x-1.5 px-5 h-full rounded">
-          {renderMagnifyingGlassIcon()}
-          <input
-            type="text"
-            placeholder="Type and press enter"
-            className="border-none bg-transparent focus:outline-none focus:ring-0 w-full text-base"
-            autoFocus
-          />
-          <button type="button" onClick={() => setShowSearchForm(false)}>
-            <XMarkIcon className="w-5 h-5" />
-          </button>
-        </div>
-        <input type="submit" hidden value="" />
-      </form>
+      className="flex-1 py-2 text-slate-900 dark:text-slate-100"
+      onSubmit={(e) => {
+        e.preventDefault();
+        router.push(`/search?query=${query}`); // Assuming your search page handles query params
+      }}
+    >
+      <div className="relative bg-slate-50 dark:bg-slate-800 flex items-center space-x-1.5 px-5 h-full rounded">
+        <input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Type and press enter"
+          className="border-none bg-transparent focus:outline-none focus:ring-0 w-full text-base"
+          autoFocus
+        />
+        <button type="button" onClick={() => setShowSearchForm(false)}>
+          <XMarkIcon className="w-5 h-5" />
+        </button>
+
+        {/* Show suggestions or "Not Found" message */}
+        {suggestions.length > 0 ? (
+          <div className="absolute top-full left-0 w-full bg-white dark:bg-neutral-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-b-md">
+            <ul className="py-2 text-sm">
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className="px-4 py-2 hover:bg-slate-100 dark:hover:bg-neutral-700"
+                >
+                  <a
+                    href={`/search?query=${suggestion}`}
+                    className="text-slate-900 dark:text-slate-200"
+                  >
+                    {suggestion}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : query.length > 2 ? (
+          <div className="absolute top-full left-0 w-full bg-white dark:bg-neutral-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-b-md">
+            <div className="px-4 py-2 text-sm text-slate-500 dark:text-slate-400">
+              Not Found
+            </div>
+          </div>
+        ) : null}
+      </div>
+      <input type="submit" hidden value="" />
+    </form>
     );
   };
 
@@ -82,7 +133,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
           </div>
 
           <div className="flex lg:flex-1 items-center space-x-3 sm:space-x-8">
-          <Link href='/' > Only De</Link>
+          <Link href='/' className="hover:text-gray-600"> AhmadEco</Link>
           
             {!showSearchForm && (
               <div className="hidden md:block h-10 border-l border-slate-200 dark:border-slate-700"></div>

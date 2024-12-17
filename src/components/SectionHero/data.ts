@@ -12,26 +12,27 @@ interface Hero2DataType {
   btnLink: Route;
 }
 
+
 export const HERO2_DEMO_DATA: Hero2DataType[] = [
   {
     image: imageRightPng2,
-    heading: "Exclusive collection for everyone",
-    subHeading: "In this season, find the best 🔥",
-    btnText: "Explore now",
+    heading: "Discover Your Perfect Style",
+    subHeading: "This season, find the trendiest looks 🔥",
+    btnText: "Shop Now",
     btnLink: "/",
   },
   {
     image: imageRightPng3,
-    heading: "Exclusive collection for everyone",
-    subHeading: "In this season, find the best 🔥",
-    btnText: "Explore now",
+    heading: "Unveil Exclusive Collections",
+    subHeading: "Curated just for you, with timeless fashion 🔥",
+    btnText: "Browse Collections",
     btnLink: "/",
   },
   {
     image: imageRightPng,
-    heading: "Exclusive collection for everyone",
-    subHeading: "In this season, find the best 🔥",
-    btnText: "Explore now",
+    heading: "New Arrivals for Every Occasion",
+    subHeading: "Elevate your wardrobe with the finest trends 🔥",
+    btnText: "Explore Now",
     btnLink: "/",
   },
 ];
